@@ -1,0 +1,128 @@
+*{
+    outline: none;
+}
+body{
+    padding: 0;
+    margin: 0;
+    background: #f4f3f7;
+    font-family: 'Open Sans';
+}
+header{
+    font-size: 30px;
+    text-align: center;
+    height: 110px;
+    line-height: 108px;
+    position: relative;
+    z-index: 3;
+    background: #564B73 url('icon.png') no-repeat bottom right;
+}
+header a{
+    text-decoration: none;
+    text-shadow: 0 0 5px #222;
+    color: #eee;
+}
+nav{
+    background: #413957;
+    box-shadow: 0 0 5px #111;
+    position: relative;
+    z-index: 4;
+    margin: 0;
+    padding: 0;
+}
+nav ul{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+nav ul li{
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+nav ul li a{
+    color: #b9b5c4;
+    text-decoration: none;
+    display: inline-block;
+    height: 45px;
+    line-height: 42px;
+    padding: 0 12px;
+    font-size: 15px;
+}
+
+nav ul li a:hover, nav ul li a.actuel{
+    color: #fff;
+    cursor: pointer;
+    text-shadow: 0 0 5px #111;
+}
+article{
+    width: 900px;
+    margin: 20px auto;
+    padding: 30px;
+    background: #fff;
+    box-shadow: 0 0 3px #aaa;
+    border-radius: 3px;
+}
+.infos{
+    font-style: italic;
+    padding: 10px 30px;
+}
+article h1{
+    font-weight: normal;
+    font-size: 28px;
+    margin: 0 0 30px 0;
+    padding: 0;
+}
+article p{
+    font-size: 14px;
+    line-height: 25px;
+}
+article a, footer a{
+    cursor: pointer;
+    color: #725bae;
+    text-decoration: none;
+}
+article a:hover, footer a:hover{
+    text-decoration: underline;
+}
+footer{
+    text-align: center;
+    color: #777;
+    font-size: 13px;
+}
+form input[type="text"], form input[type="password"], form textarea{
+    display: block;
+    border: 1px solid #bbb;
+    padding: 5px 10px;
+    margin: 10px 5px;
+    width: 880px;
+    color: #333;
+}
+form textarea{
+    resize: vertical;
+    min-height: 300px;
+    padding: 10px;
+}
+form input[type="text"]:focus, form input[type="password"]:focus, form textarea:focus{
+    border: 1px solid #564B73;
+    color: #000;
+}
+form input[type="submit"]{
+    border: 1px solid #725bae;
+    color: #725bae;
+    background: #fff;
+    padding: 5px 10px;
+    margin: 50px auto 0 auto;
+    display: block;
+    width: 400px;
+}
+form input[type="submit"]:hover{
+    cursor: pointer;
+    color: #fff;
+    background: #725bae;
+}
+.confirmation{
+    color: #4a9c3f;
+}
+.erreur{
+    color: #FE4365;
+}
