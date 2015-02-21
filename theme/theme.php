@@ -11,7 +11,7 @@
 		<header><a href="<?php echo $url_wiki; ?>"><?php echo $titre_wiki; ?></a></header>
 		<nav><?php echo $menu_wiki; ?></nav>
 		<?php echo $contenu_page; ?>
-		<footer>Humblement propulsé par Waaki. <?php echo $footer; ?></footer>
+		<footer>Humblement propulsé par <a href="https://github.com/quent1-fr/Waaki">Waaki</a>. <?php echo $footer; ?></footer>
 		<!-- Page générée en <?php echo $temps_generation; ?> seconde(s) -->
 	</body>
 </html>
