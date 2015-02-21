@@ -48,6 +48,10 @@
     // On calcule le temps de génération (à 0,00001 près)
     $temps_generation = round($fin_chargement - $debut_chargement, 5, PHP_ROUND_HALF_EVEN);
     
+    // Si la page chargée est la page 404, alors on renvoi le bon header
+    if($_GET['id'] == $page_404)
+    	header($_SERVER["SERVER_PROTOCOL"] . ' 404 Not Found');
+    
     // On inclu le thème du wiki
     include 'theme/theme.php';    
     
