@@ -9,8 +9,8 @@
     // Le titre du wiki
     $titre_wiki = 'Mon super wiki Waaki';
     
-    // L'URL du wiki
-    $url_wiki = 'http://example.com/';
+    // L'URL du wiki - Par défaut, cette dernière est auto-détectée
+    $url_wiki = '//' . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI'];
     
     // Le menu du wiki
     $menu_wiki = '<ul><li><a href="' . $url_wiki . '">Accueil</a></li></ul>';
