@@ -1,4 +1,4 @@
-#Waaki v0.2#
+#Waaki v0.2.1#
 ###Le wiki léger et sans base de données###
 ----
 Waaki est un CMS publié sous licence libre GPL v3. Fonctionnant sans base de données (tout est stocké dans plusieurs fichiers et dossiers), il est particulièrement simple à installer et à utiliser, nottament grâce à sa syntaxe Markdown. De plus, n'ayez plus peur des robots spammeurs! En effet, Waaki est livré par défaut avec un captcha anti-spam simple à résoudre... pour les humains!
