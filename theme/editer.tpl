@@ -16,6 +16,9 @@
             
         elseif($_GET['message'] == 4)
             echo 'class="infos erreur"><p>Erreur: vous n\'avez pas le droit d\'éditer cette page!</p>';
+
+        elseif($_GET['message'] == 5)
+            echo 'class="infos erreur"><p>Erreur interne: impossible de vérifier l\'exactitude du captcha!</p>';
         
         echo '</article>';
         
@@ -34,9 +37,13 @@
         <label>Contenu de la page (<a href="http://fr.wikipedia.org/wiki/Markdown">au format Markdown</a>):</label>
         <textarea name="contenu" required>' . $page['contenu'] . '</textarea>
         <label>Résumé des modifications:</label>
-        <input type="text" name="commentaire" required />
-        <label><strong>Captcha anti-spam</strong>: ' . $nombres[$premier_nombre] . ' plus ' . $nombres[$second_nombre] . ' égal </label>
-        <input type="text" placeholder="En chiffres..." name="captcha" required />';
+        <input type="text" name="commentaire" required />';
+
+    // Affichage du captcha
+    if($recaptcha === false) // Captcha par défaut
+        echo '<label><strong>Captcha anti-spam</strong>: ' . $nombres[$premier_nombre] . ' plus ' . $nombres[$second_nombre] . ' égal </label> <input type="text" placeholder="En chiffres..." name="captcha" required />';
+    else // Ou si nécéssaire le reCaptcha
+        echo '<label>Captcha anti-spam:</label><div class="g-recaptcha" data-sitekey="' . $recaptcha_site_key . '"></div>';
         
     // Si la page n'est pas publique, on demande le mot de passe administrateur
     if($page['publique'] === false)
@@ -47,5 +54,6 @@
     // Fin du formulaire d'édition
     echo '<input type="hidden" name="page_id" value="' . $_GET['id'] . '" /><input type="submit" value="Publier mes modifications" /></form>';
     
+    echo '</article>';
 ?>   
     

@@ -6,6 +6,11 @@
 		<link type="text/css" rel="stylesheet" href="<?php echo $url_wiki; ?>theme/open-sans.css" />
 		<link type="text/css" rel="stylesheet" href="<?php echo $url_wiki; ?>theme/style.css" />
 		<link rel="icon" type="image/png" href="<?php echo $url_wiki; ?>theme/favicon.png" />
+		<?php
+			// Permet de charger reCaptcha si activé et si l'on est sur la bonne page
+			if($recaptcha === true && $_GET['action'] == 'editer')
+				echo '<script src="https://www.google.com/recaptcha/api.js"></script>';
+		?>
 	</head>
 	<body>
 		<header><a href="<?php echo $url_wiki; ?>"><?php echo $titre_wiki; ?></a></header>

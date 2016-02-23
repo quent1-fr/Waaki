@@ -2,20 +2,66 @@
 
     // On inclu le fichier de configuration
     include 'include/config.php';
-    
+
     // On démarre le système de sessions
     session_start();
     
     // On vérifie si tous les champs sont remplis
-    if(!isset($_POST['titre'], $_POST['contenu'], $_POST['commentaire'], $_POST['captcha'], $_POST['page_id'], $_SESSION['resultat'], $_POST['mot_de_passe']) or empty($_POST['titre']) or empty($_POST['contenu']) or empty($_POST['commentaire']) or empty($_POST['page_id'])){
+    if(!isset($_POST['titre'], $_POST['contenu'], $_POST['commentaire'], $_POST['page_id'], $_SESSION['resultat'], $_POST['mot_de_passe']) or empty($_POST['titre']) or empty($_POST['contenu']) or empty($_POST['commentaire']) or empty($_POST['page_id']) or (isset($_POST['captcha']) or isset($_POST['g-recaptcha-response'])) === false){
         header('Location: ' . $url_wiki . '?action=editer&id=' . $_POST['page_id'] . '&message=2');
         exit;
     }
     
     // On vérifie si le captcha est bon
-    if($_SESSION['resultat'] != $_POST['captcha']){
-        header('Location: ' . $url_wiki . '?action=editer&id=' . $_POST['page_id'] . '&message=3');
-        exit;
+    if($recaptcha == false)
+    {
+        // Si on n'utilise pas reCaptcha, on vérifie simplement la correspondance entre la réponse prévue et celle rentrée par l'utilisateur
+        if($_SESSION['resultat'] != $_POST['captcha']){
+            header('Location: ' . $url_wiki . '?action=editer&id=' . $_POST['page_id'] . '&message=3');
+            exit;
+        }
+    }
+    else
+    {
+        // Si on utilise reCaptcha, on interroge les serveurs de Google
+
+        // On forge une requête avec des données en POST
+        $donnees_post = http_build_query(
+            array(
+                'secret' => $recaptcha_secret_key,
+                'response' => $_POST['g-recaptcha-response']
+            ) 
+        );
+
+        $header_post = array(
+            'http' => array(
+                'method' => 'POST',
+                'header' => 'Content-type: application/x-www-form-urlencoded',
+                'content' => $donnees_post
+            )
+        );
+
+        $context = stream_context_create($header_post);
+
+        // On envoie la requête
+        $resultat = file_get_contents('https://www.google.com/recaptcha/api/siteverify', false, $context);
+
+        // Si la requête n'a pas pu être envoyée correctement
+        if(!$resultat)
+        {
+            header('Location: ' . $url_wiki . '?action=editer&id=' . $_POST['page_id'] . '&message=5');
+            exit;   
+        }
+
+        // Sinon, on parse le json
+        $resultat_parse = json_decode($resultat);
+
+        // Et on vérifie si le captcha est bon
+        if($resultat_parse->success == false)
+        {
+            header('Location: ' . $url_wiki . '?action=editer&id=' . $_POST['page_id'] . '&message=3');
+            exit;             
+        }
     }
     
     // On vérifie si la page à éditer est publique ou si le mot de passe administrateur est le bon

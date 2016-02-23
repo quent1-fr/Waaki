@@ -32,5 +32,11 @@
     
     // E-mail pour la notification
     $notification_email = 'jean.dupond@example.com';
-    
+  
+    // Activer reCaptcha plutôt que le captcha classique (plus efficace, mais utilise les services Google)?
+    $recaptcha = false;
+
+    // Clés fournies par reCaptcha (si activé)
+    $recaptcha_site_key = '';
+    $recaptcha_secret_key = '';  
 ?>
