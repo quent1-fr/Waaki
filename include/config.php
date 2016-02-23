@@ -10,7 +10,7 @@
     $titre_wiki = 'Mon super wiki Waaki';
     
     // L'URL du wiki - Par défaut, cette dernière est auto-détectée
-    $url_wiki = '//' . $_SERVER['SERVER_NAME'] . explode('?', $_SERVER['REQUEST_URI'])[0];
+    $url_wiki = '//' . $_SERVER['SERVER_NAME'] . str_replace('publier.php', '', explode('?', $_SERVER['REQUEST_URI'])[0]);
     
     // Le menu du wiki
     $menu_wiki = '<ul><li><a href="' . $url_wiki . '">Accueil</a></li></ul>';
