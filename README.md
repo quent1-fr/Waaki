@@ -8,6 +8,8 @@ Waaki est un CMS publié sous licence libre GPL v3. Fonctionnant sans base de do
 #### Installation et configuration
 Pour installer Waaki, téléchargez et décompressez les sources de Waaki sur votre serveur. Pour le configurer, il vous suffit d'éditer le fichier config.php contenu dans le dossier include/.
 
+![Accueil de Waaki](http://i.imgur.com/CrvoQB2.png)
+
 #### Créer une nouvelle page
 Pour créer une nouvelle page, créez un nouveau dossier dans donnees/. Aidez-vous au besoin des dossiers déjà présents. Rendez-vous ensuite sur http://votrewiki/?id=nom_de_votre_dossier pour ajouter du contenu à votre nouvelle page.
 
